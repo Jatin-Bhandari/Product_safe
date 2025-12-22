@@ -89,3 +89,4 @@ Here's the structured information extracted from the product image:
 
 ------------------------------------
 ```
+.
