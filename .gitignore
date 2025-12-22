@@ -1,0 +1,13 @@
+# Environment variables
+.env/
+.venv/
+.ipynb_checkpoints/
+.vscode/
+.git
+
+# Images
+*.jpg
+*.png
+*.jpeg
+*.gif
+
