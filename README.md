@@ -1,26 +1,21 @@
 # Product Safety Checker
 
-This project uses the Gemini API to analyze an image of a product and extract key information, such as the product name, ingredients, brand, and safety warnings. This tool can be used to quickly get details about a product from its packaging.
+This project provides a web interface to analyze an image of a product and get a safety and nutritional report. It uses the Gemini API to analyze the image, extract key information, and perform a safety analysis.
 
 ## Features
 
--   Analyzes product images from a local file path or a URL.
--   Extracts structured information including:
-    -   Product Name
-    -   Product Type
-    -   Ingredients
-    -   Brand
-    -   Certifications and Warnings
--   Uses the power of the Gemini large language model for image analysis.
+-   **Web Interface:** Upload a product image directly in your browser.
+-   **Product Analysis:** Extracts structured information like product name, ingredients, and brand.
+-   **Safety Report:** Generates a report including pros, cons, nutritional information, and regulatory status.
+-   **Web Search:** Searches for recent news, recalls, and health advisories related to the product and its ingredients.
 
 ## How It Works
 
-The script takes an image of a product as input and performs the following steps:
-
-1.  **Load Image**: The script loads the image from either a local file path or a URL.
-2.  **Prepare Prompt**: It prepares a prompt for the Gemini API, instructing it to analyze the image and extract specific information in a structured format.
-3.  **API Call**: The script sends the image and the prompt to the Gemini API using the `langchain` library.
-4.  **Display Results**: The structured information returned by the API is then displayed to the user.
+1.  **Upload Image:** The user uploads a product image and provides their Gemini API key through the web interface.
+2.  **Backend API:** The frontend sends the image and API key to the Flask backend.
+3.  **Image Analysis:** The backend uses the Gemini API to analyze the image and extract product information.
+4.  **Analysis & Search:** It then performs a deeper analysis and searches the web for relevant safety information.
+5.  **Display Results:** The final, compiled report is sent back to the frontend and displayed to the user.
 
 ## Installation
 
@@ -41,52 +36,34 @@ The script takes an image of a product as input and performs the following steps
     pip install -r requirements.txt
     ```
 
-4.  **Set up your environment variables:**
-    Create a `.env` file in the root of the project and add your Google API key:
-    ```
-    GOOGLE_API_KEY="your_google_api_key"
-    ```
-
 ## Usage
 
-You can run the project from the `Product_safety_checker.ipynb` notebook.
+1.  **Run the Flask application:**
+    ```bash
+    python app.py
+    ```
 
-1.  Open the notebook in a Jupyter environment.
-2.  Run the cells in the notebook.
-3.  When prompted, enter the local file path or URL of the product image you want to analyze.
+2.  **Open your browser:**
+    Navigate to `http://127.0.0.1:5000` in your web browser.
 
-The script will then output the extracted information from the product image.
+3.  **Analyze a product:**
+    -   Enter your Gemini API key in the input field.
+    -   Upload an image of the product you want to analyze.
+    -   Click the "Analyze" button.
+
+The analysis report will be displayed on the page.
+
+## Security Warning
+
+**Important:** You are required to enter your Gemini API key directly into the browser. This is not a secure practice for a production application, as the API key is transmitted over the network and visible in the browser's request. For personal or development use, ensure you are running this on a trusted local machine. In a production environment, the API key should be stored securely on the server and not exposed to the client-side.
 
 ## Dependencies
 
 The main dependencies for this project are:
 
+-   `Flask`: For the web server.
 -   `langchain-google-genai`: For interacting with the Gemini API.
 -   `requests`: For fetching images from URLs.
--   `python-dotenv`: For managing environment variables.
--   `Pillow`: For image manipulation.
+-   `duckduckgo-search`: For the web search functionality.
 
 For a full list of dependencies, see the `requirements.txt` file.
-
-## Example
-
-Here is an example of the output for an image of a "Kurkure" snack packet:
-
-```
---- Product Identification Results ---
-Here's the structured information extracted from the product image:
-
-1.  **Product Name:** Kurkure
-2.  **Product Type:** Snack (Namkeen), Food
-3.  **Extracted Information:**
-    *   **Brand Statement:** "Kurkure is a Registered Trade Mark of PepsiCo, Inc."
-    *   **Manufacturer Details:** "MFD. BY: For manufacturer's details, see first two characters of batch no. and see below."
-        *   N1 - PepsiCo India Holdings Pvt. Ltd., Lic. No. 10012063000110.
-        *   N2 - PepsiCo India Holdings Pvt. Ltd., Lic. No. 10012022000339.
-...
-4.  **Brand:** Kurkure (a trademark of PepsiCo, Inc.)
-5.  **Summary:** Kurkure is a 36g pack of proprietary savory namkeen snack, a trademark of PepsiCo, Inc., made from cereal products, spices, and seasonings, containing onion and garlic, and marketed by PepsiCo India Holdings Pvt. Ltd.
-
-------------------------------------
-```
-.

@@ -72,3 +72,4 @@ wcwidth==0.2.14
 websockets==15.0.1
 xxhash==3.6.0
 zstandard==0.25.0
+Flask==3.0.0

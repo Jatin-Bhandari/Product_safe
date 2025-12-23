@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Safety Checker</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head><body>
+    <div class="container">
+        <h1>Product Safety Checker</h1>
+        <p>Upload a product image and enter your Gemini API key to get a safety analysis.</p>
+        <form id="upload-form">
+            <div class="form-group">
+                <label for="api-key">Gemini API Key</label>
+                <input type="password" id="api-key" placeholder="Enter your API key" required>
+            </div>
+            <div class="form-group">
+                <label for="image-file">Product Image</label>
+                <input type="file" id="image-file" accept="image/*" required>
+            </div>
+            <button type="submit">Analyze</button>
+        </form>
+        <div id="loader" class="hidden"></div>
+        <div id="result"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="/static/script.js"></script>
+</body>
+</html>
